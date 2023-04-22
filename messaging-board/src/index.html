@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Circular Button Demo</title>
+	<style>
+		body {
+			margin: 0;
+			padding: 0;
+			background-color: #f2f2f2;
+		}
+		
+		.circular-button {
+			background-color: #4285f4;
+			border-radius: 50%;
+			color: #fff;
+			cursor: pointer;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			font-size: 2rem;
+			height: 60px;
+			position: fixed;
+			bottom: 30px;
+			right: 30px;
+			width: 60px;
+			z-index: 1;
+		}
+		
+		.menu-button {
+			background-color: #fff;
+			border-radius: 50%;
+			box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
+			height: 50px;
+			width: 50px;
+			position: absolute;
+			opacity: 0;
+			transform: translate(-50%, -50%);
+			transition: opacity 0.3s ease-in-out;
+			z-index: -1;
+		}
+	</style>
+</head>
+<body>
+	<div class="circular-button">&#x2b;</div>
+	
+	<script>
+		const circularButton = document.querySelector('.circular-button');
+		let isOpen = false;
+		
+		circularButton.addEventListener('click', () => {
+			if (isOpen) {
+				closeMenu();
+			} else {
+				openMenu();
+			}
+		});
+		
+		function openMenu() {
+			circularButton.classList.add('active');
+			for (let i = 0; i < 5; i++) {
+				const button = document.createElement('div');
+				button.className = 'menu-button';
+				button.innerHTML = '&#x1f4be;';
+				button.style.top = `${50 - 40*Math.sin(i * 0.5*Math.PI)}%`;
+				button.style.left = `${50 + 40*Math.cos(i * 0.5*Math.PI)}%`;
+				document.body.appendChild(button);
+				setTimeout(() => {
+					button.style.opacity = '1';
+				}, i * 50);
+			}
+			isOpen = true;
+		}
+		
+		function closeMenu() {
+			circularButton.classList.remove('active');
+			const menuButtons = document.querySelectorAll('.menu-button');
+			menuButtons.forEach(button => {
+				button.style.opacity = '0';
+				setTimeout(() => {
+					button.remove();
+				}, 300);
+			});
+			isOpen = false;
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,220 @@
+body{
+    background: radial-gradient(circle at center, black 9%, white 10%);
+    width: 100%;
+    background-color: #fff;
+    background-size: 60px 50px;
+    background-repeat: repeat; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 20vh;
+}
+
+/* navigator - BEGIN */
+:root {
+    --clr: white;
+    --touch-var: 0px;
+    --touch-object:"";
+}
+.navigation {
+    width: 400px;
+    height: 70px;
+    background: blueviolet;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.navigation ul {
+    display: flex;
+    width: 350px;
+}
+.navigation ul li {
+    position: relative;
+    list-style: none;
+    width: 70px;
+    height: 70px;
+    z-index: 1;
+}
+.navigation ul li a {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    text-align: center;
+    font-weight: 500;
+}
+.navigation ul li a .icon {
+    position: relative;
+    display: block;
+    line-height: 75px;
+    font-size: 1.5em;
+    text-align: center;
+    transition: 0.5s;
+    color: var(--clr);
+}
+.navigation ul li#active a .icon {
+    transform: translateY(-32px);
+}
+.navigation ul li a .text {
+    position: absolute;
+    color: var(--clr);
+    font-weight: 400;
+    font-size: 0.75em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    opacity: 0;
+    transform: translateY(20px);
+}
+.navigation ul li#active a .text {
+    opacity: 1;
+    transform: translateY(10px);
+}
+.indicator {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: #29fd53;
+    border-radius: 50%;
+    border: 6px solid var(--clr);
+    transition: 0.5s;
+}
+.indicator::before {
+    content: "";
+    position: absolute;
+    top: 30%;
+    width: 20px;
+    left: -22px;
+    height: 20px;
+    background: transparent;
+    border-top-right-radius: 20px;
+    box-shadow: 0px -10px 0 0 var(--clr);
+}
+.indicator::after {
+    content: "";
+    position: absolute;
+    top: 30%;
+    width: 20px;
+    right: -22px;
+    height: 20px;
+    background: transparent;
+    border-top-left-radius: 20px;
+    box-shadow: 0px -10px 0 0 var(--clr);
+}
+.navigation ul li:nth-child(1)#active ~ .indicator {
+    transform: translate(calc(70px * 0 - 1px), -35px);
+}
+.navigation ul li:nth-child(2)#active ~ .indicator {
+    transform: translate(calc(70px * 1 - 1px), -35px);
+}
+.navigation ul li:nth-child(3)#active ~ .indicator {
+    transform: translate(calc(70px * 2 - 1px), -35px);
+}
+.navigation ul li:nth-child(4)#active ~ .indicator {
+    transform: translate(calc(70px * 3 - 1px), -35px);
+}
+.navigation ul li:nth-child(5)#active ~ .indicator {
+    transform: translate(calc(70px * 4 - 1px), -35px);
+}
+/* navigator - END */
+
+
+.loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 10%;
+    height: 10%;
+    z-index: 9999;
+}
+.message {
+    width: 300px;
+    display: grid;
+    z-index: 0;
+    position: absolute;
+}
+.title {
+    padding-top: 10px;
+    padding-left: 40px;
+    height: 50px;
+    font-size: 30px;
+    background-color: rgba(255, 0, 0, 0.90);
+}
+.content {
+    padding-top: 15px;
+    padding-left: 25px;
+    font-size: 20px;
+    word-wrap: break-word;
+    word-break: keep-all;
+    background-color: rgba(255, 0, 0, 1);
+}
+.writer {
+    font-size: 15px;
+}
+div:has(> .touch) {
+    z-index: 1000;
+    position: relative;
+}
+/*
+Menu
+*/
+.menu {
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    bottom: 10px;
+    right: 20px;
+    justify-content: center;
+    align-items: center;
+}
+.menu li {
+    position: absolute;
+    list-style: none;
+    left: 0; 
+    transform-origin: 100px;
+    transition: 0.5s;
+    transition-delay: calc(0.1s * var(--i));
+    transform: rotate(0deg) translateX(80px);
+}
+.menu.active li {
+    left: 0;
+    transform: rotate(calc(360deg / 8 * var(--i)));
+}
+.menu li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(-30deg, #ff1252, #00f);
+    border-radius: 50%;
+    transform: rotate(calc(360deg / -8 * var(--i)));
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.90);
+    color: #111;
+}
+.menu li a:hover {
+    color: #fff;
+}
+.toggle {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.90);
+    font-size: 2em;
+    transition: 0.5s;
+}
+.menu.active .toggle {
+    transform: rotate(315deg);
+}
