@@ -9,12 +9,14 @@ body{
     align-items: center;
     min-height: 20vh;
 }
-
+body.dark {
+    background: radial-gradient(circle at center, white 9%, black 10%);
+    background-size: 60px 50px;
+    background-color: #000;
+}
 /* navigator - BEGIN */
 :root {
     --clr: white;
-    --touch-var: 0px;
-    --touch-object:"";
 }
 .navigation {
     width: 400px;
@@ -163,6 +165,7 @@ div:has(> .touch) {
 Menu
 */
 .menu {
+    z-index: 1000;
     position: fixed;
     width: 200px;
     height: 200px;

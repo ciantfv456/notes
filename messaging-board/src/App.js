@@ -1,8 +1,7 @@
 import './App.css';
 import ApolloClient from 'apollo-boost'
 import Messages from './components/Messages';
-import Menu from './components/Menu';
-import A from './components/NewMessage';
+import Menu from './components/NewMessage';
 
 export const client = new ApolloClient({
   uri: 'http://localhost:4000/graphql'
@@ -11,9 +10,8 @@ export const client = new ApolloClient({
 function App() {
   return (
       <div className="App">
-        <Menu/>
         <Messages/>
-        <A/>
+        <Menu/>
       </div>
   );
 }

@@ -1,7 +1,10 @@
 function menuToggle() {
-    let toggle = document.querySelector('.toggle');
     let menu = document.querySelector('.menu');
     menu.classList.toggle('active');
+}
+function darkModeToggle() {
+    let toggle = document.querySelector('body');
+    toggle.classList.toggle('dark');
 }
 
 export default function Menu(){
@@ -22,7 +25,7 @@ export default function Menu(){
             <a href="#"><ion-icon name="git-branch-outline"></ion-icon></a>
         </li>
         <li style={{ "--i": 4 }}>
-            <a href="#"><ion-icon name="contrast-outline"></ion-icon></a>
+            <a onClick={darkModeToggle}><ion-icon name="contrast-outline"></ion-icon></a>
         </li>
         <li style={{ "--i": 5 }}>
             <a href="#"><ion-icon name="color-palette-outline"></ion-icon></a>
