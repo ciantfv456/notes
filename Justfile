@@ -8,11 +8,12 @@ set shell := ["powershell.exe", "-c"]
 @graphql:
 	node graphql\server\app;
 
-@web:
+@backend:
   cd messaging-board; npm start
 
-@dev:
-  docker-compose up
+@build context tag:
+  docker build $context -t $tag
+  docker push $tag
 
 @deploy release:
   helm install $release deploy/
