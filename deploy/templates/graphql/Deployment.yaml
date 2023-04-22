@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "graphql.fullname" . }}
+  labels:
+    {{- template "graphql.labels" . }}
+spec:
+  selector:
+    matchLabels:
+      {{- template "graphql.labels" . }}
+  replicas: {{ .Values.graphql.replicas }}
+  template:
+    metadata:
+      labels:
+        {{- template "graphql.labels" . }}
+    spec:
+      containers:
+      - name: graphql
+        image: "{{ .Values.graphql.repository.image }}"
+        imagePullPolicy: {{ .Values.graphql.repository.imagePullPolicy }}
+        ports:
+        - containerPort: {{ .Values.graphql.service.port }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.graphql.service.port }}
+        readinessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.graphql.service.port }}
+        resources:
+          {{ toYaml .Values.graphql.resources | indent 10 }}
