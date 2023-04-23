@@ -1,3 +1,6 @@
+import './Menu.css';
+import { Link } from "react-router-dom";
+
 function menuToggle() {
     let menu = document.querySelector('.menu');
     menu.classList.toggle('active');
@@ -13,16 +16,20 @@ export default function Menu(){
             <ion-icon name="add-outline"></ion-icon>
         </div>
         <li style={{ "--i": 0 }}>
-            <a href="#"><ion-icon name="home-outline"></ion-icon></a>
+            <Link to="/">
+                <ion-icon name="home-outline"></ion-icon>
+            </Link>
         </li>
         <li style={{ "--i": 1 }}>
-            <a href="#"><ion-icon name="albums-outline"></ion-icon></a>
+            <Link to="/dashboard">
+                <ion-icon name="albums-outline"></ion-icon>
+            </Link>
         </li>
         <li style={{ "--i": 2 }}>
             <a href="#"><ion-icon name="people-outline"></ion-icon></a>
         </li>
         <li style={{ "--i": 3 }}>
-            <a href="#"><ion-icon name="git-branch-outline"></ion-icon></a>
+            <a href="https://github.com/ciantfv456/notes/tree/master"><ion-icon name="git-branch-outline"></ion-icon></a>
         </li>
         <li style={{ "--i": 4 }}>
             <a onClick={darkModeToggle}><ion-icon name="contrast-outline"></ion-icon></a>

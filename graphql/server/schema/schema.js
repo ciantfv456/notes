@@ -43,12 +43,11 @@ function flatDict(dict) {
      return new_dict  
 }
 async function updateDocumentById(_collection, doc_id, update) {
-    update = flatDict(update)
-    console.log(update)
+    flatUpdate = flatDict(update)
     return new Promise((resolve, reject) => {
         const docRef = doc(db, _collection, doc_id)
-        updateDoc(docRef, update).then(() => {
-            console.log("updated")
+        updateDoc(docRef, flatUpdate).then(() => {
+            console.log(update)
             resolve(update)
         })
     })
@@ -101,7 +100,6 @@ const UserType = new GraphQLObjectType({
         messages: {
             type: new GraphQLList(MessageType),
             async resolve(parent, args){
-                console.log(parent.id)
                 return await findDocumentByField('messages', "userId", parent.id)
             }
         }
@@ -137,7 +135,6 @@ const MessageType = new GraphQLObjectType({
         user: {
             type: UserType,
             async resolve(parent, args) {
-                console.log(parent.userId)
                 return await findDocumentByID('users', parent.userId)
             }
         }

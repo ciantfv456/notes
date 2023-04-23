@@ -1,25 +1,22 @@
-import React from 'react'
-import {createSignal} from 'solid-js'
+import React, { useState } from 'react'
 import {LoadingScreen} from './LoadingScreen'
 import {Message} from './Message'
 import {graphql} from 'react-apollo'
 import {flowRight as compose} from 'lodash';
 import {getMessagesQuery, updateMessageQuery} from "../queries/queries"
 
-
 function Messages(props) {
-    const [getMessages, setMessages] = createSignal([])
+
     function readMessages() {
-        console.log(props)
+        console.log('a')
         if (props.getMessagesQuery.loading) {
             return <LoadingScreen/>
         }
-        if(getMessages().length == 0) {
-            setMessages(props.getMessagesQuery.messages.map(message => {
-                return <Message message={message} messages={getMessages} setMessages={setMessages} updateMessageQuery={props.updateMessageQuery}/>
-            }))
-        }
-        return getMessages()
+        
+        return (props.getMessagesQuery.messages.map(message => {
+            return <Message message={message} getMessagesQuery={props.getMessagesQuery} updateMessageQuery={props.updateMessageQuery}/>
+        }))
+        
     }
     return <div>
         {readMessages()}
@@ -27,6 +24,8 @@ function Messages(props) {
 
 }
 export default compose(
-    graphql(getMessagesQuery, {name: "getMessagesQuery"}),
+    graphql(getMessagesQuery, {name: "getMessagesQuery", options: {
+        fetchPolicy: 'no-cache' 
+   }}),
     graphql(updateMessageQuery, {name: "updateMessageQuery"}),
 )(Messages);

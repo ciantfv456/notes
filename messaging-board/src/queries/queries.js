@@ -23,10 +23,6 @@ const updateMessageQuery = gql`
             id
             title
             content
-            user {
-                username
-                id
-            }
             position {
                 x
                 y

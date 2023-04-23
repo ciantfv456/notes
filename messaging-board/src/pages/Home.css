@@ -1,4 +1,4 @@
-body {
+body.home {
     background: radial-gradient(circle at center, black 9%, white 10%);
     width: 100%;
     background-color: #fff;
@@ -8,8 +8,6 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 20vh;
-}
-body.dark {
     background: radial-gradient(circle at center, white 9%, black 10%);
     background-size: 60px 50px;
     background-color: #000;
