@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "backend.fullname" . }}
+  labels:
+    {{- template "backend.labels" . }}
+spec:
+  selector:
+    matchLabels:
+      {{- template "backend.labels" . }}
+  replicas: {{ .Values.backend.replicas }}
+  template:
+    metadata:
+      labels:
+        {{- template "backend.labels" . }}
+    spec:
+      containers:
+      - name: backend
+        image: "{{ .Values.backend.repository.image }}"
+        imagePullPolicy: {{ .Values.backend.repository.imagePullPolicy }}
+        env:
+          key: "GRAPHQL_URL"
+          value: {{ include "graphql.url"}}
+        ports:
+        - containerPort: {{ .Values.backend.service.port }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.backend.service.port }}
+        readinessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.backend.service.port }}
+        resources:
+          {{ toYaml .Values.backend.resources | indent 10 }}

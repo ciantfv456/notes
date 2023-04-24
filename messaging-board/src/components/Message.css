@@ -1,0 +1,51 @@
+.loader {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 10%;
+    height: 10%;
+    z-index: 9999;
+}
+.message {
+    width: 300px;
+    display: grid;
+    z-index: 0;
+    position: absolute;
+}
+.title {
+    padding-top: 10px;
+    padding-left: 40px;
+    font-size: 30px;
+    word-wrap: break-word;
+    word-break: keep-all;
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+    background-color: rgba(255, 0, 0, 0.90);
+}
+div.title-text {
+    flex: 1;
+}
+div.edit {
+    flex: 2;
+    position: absolute;
+    opacity: 0;
+}
+div.edit:hover {
+    opacity: 1;
+}
+.content {
+    padding-top: 15px;
+    padding-left: 25px;
+    font-size: 20px;
+    word-wrap: break-word;
+    word-break: keep-all;
+    background-color: rgba(255, 0, 0, 1);
+}
+.writer {
+    font-size: 15px;
+}
+div:has(> .touch) {
+    z-index: 1000;
+    position: relative;
+}

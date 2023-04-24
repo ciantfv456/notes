@@ -1,0 +1,60 @@
+/*
+profile
+*/
+.profile {
+    z-index: 10000;
+    position: fixed;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    top: -50px;
+    right: -20px;
+    justify-content: center;
+    align-items: center;
+}
+.profile li {
+    position: absolute;
+    list-style: none;
+    left: 0; 
+    transform-origin: 100px;
+    transition: 0.5s;
+    transition-delay: calc(0.1s * var(--i));
+    transform: rotate(0deg) translateX(80px);
+}
+.profile.active li {
+    left: 0;
+    transform: rotate(calc(-180deg / 3 * var(--i)));
+}
+.profile li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(-30deg, #ff0040, rgb(203, 255, 16));
+    border-radius: 50%;
+    transform: rotate(calc(360deg / -3 * var(--i)));
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.90);
+    color: #111;
+}
+.profile li a:hover {
+    color: #fff;
+}
+.profile-toggle {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 3px 4px rgba(0, 0, 0, 0.90);
+    font-size: 2em;
+    transition: 0.5s;
+}
+.profile.active .toggle {
+    transform: rotate(315deg);
+}
