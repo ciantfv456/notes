@@ -1,7 +1,7 @@
 import './Message.css'
 import React, {useState} from 'react'
 import Draggable from 'react-draggable';
-
+import MessageForm from './MessageForm'
 
 export function Message(props){
     const [details, setDetails] = useState({
@@ -16,6 +16,8 @@ export function Message(props){
             y: 0
         }
     })
+    const [messageForm, setForm] = useState(false)
+    
     function startDraggingEvent(e){
         var prevtouchElement = document.querySelector(".touch");
         var touchElement = document.querySelector(`#${details.id}`);
@@ -65,7 +67,8 @@ export function Message(props){
                 key={details.id}
             >
                 <div className='title'>
-                    {details.title}
+                    <div className='title-text'>{details.title}</div>
+                    <div className='edit' onClick={(e) => {props.onClick(details)}}><ion-icon name="pencil-outline"></ion-icon></div>
                 </div>
                 <div className='content'>
                     <p>

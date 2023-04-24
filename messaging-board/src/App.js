@@ -24,7 +24,6 @@ function App() {
             <Route path='/dashboard' element={<Dashboard rendered={false}/>}/>
           </Routes>
         </Router>
-        
       </div>
   );
 }

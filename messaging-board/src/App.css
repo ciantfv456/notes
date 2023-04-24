@@ -13,4 +13,5 @@ body.dark {
     background: radial-gradient(circle at center, white 9%, black 10%);
     background-size: 60px 50px;
     background-color: #000;
+    color: darkslateblue;
 }
