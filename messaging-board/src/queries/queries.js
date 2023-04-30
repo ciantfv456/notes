@@ -5,6 +5,7 @@ const getMessagesQuery = gql`
         messages {
             title
             content
+            color
             id
             user {
                 username
@@ -23,6 +24,7 @@ const updateMessageQuery = gql`
             id
             title
             content
+            color
             position {
                 x
                 y

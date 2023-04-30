@@ -126,6 +126,7 @@ const MessageType = new GraphQLObjectType({
         id: {type: GraphQLID},
         title: {type: GraphQLString},
         content: {type: GraphQLString},
+        color: {type: GraphQLString},
         position: {
             type: PositionType,
             resolve(parent, args) {
@@ -212,17 +213,20 @@ const Mutation = new GraphQLObjectType({
         //         userId: {type: GraphQLID},
         //         title: {type: GraphQLString},
         //         content: {type: GraphQLString},
+        //         color: {type: GraphQLString},
         //     },
         //     resolve(parent, args) {
         //         const db = getDatabase();
         //         set(ref(db, 'messages/' + args.id), {
         //             title: args.title,
         //             content: args.content,
+        //             color: args.color,
         //             userId: args.userId
         //         });
         //         let message = new Message({
         //             title: args.title,
         //             content: args.content,
+        //             color: args.color,
         //             userId: args.userId
         //         });
         //         return message.save()
@@ -234,12 +238,14 @@ const Mutation = new GraphQLObjectType({
                 id: {type: GraphQLID},
                 title: {type: GraphQLString},
                 content: {type: GraphQLString},
+                color: {type: GraphQLString},
                 position: {type: PositionArgumentType}
             },
             async resolve(parent, args) {
                 return await updateDocumentById("messages", args.id, {
                     title: args.title,
                     content: args.content,
+                    color: args.color,
                     position: args.position
                 });
             }
